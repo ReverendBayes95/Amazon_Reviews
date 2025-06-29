@@ -9,6 +9,6 @@ def hf_classification_pipeline(df: pd.DataFrame, model: str = None) -> pd.DataFr
     else:
         classifier = pipeline("text-classification", model=model)
 
-    predictions = classifier(list(df['review']))
+    predictions = classifier(list(df['review'].astype(str)))
 
     return predictions

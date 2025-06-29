@@ -7,4 +7,7 @@ def create_single_review(df: pd.DataFrame) -> pd.DataFrame:
 
     return df_temp[["polarity", "review"]]
 
-#def calculate_accuracy
+def stratified_sample(df: pd.DataFrame, strat_column: str, n_samples: int):
+    return df.groupby(strat_column).apply(
+        lambda x: x.sample(min(len(x), n_samples))
+    ).reset_index(drop=True)
